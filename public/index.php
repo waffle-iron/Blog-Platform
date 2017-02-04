@@ -5,6 +5,10 @@ require_once '../bootstrap.php';
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
+$whoops = new \Whoops\Run;
+$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+$whoops->register();
+
 $container = new League\Container\Container;
 
 $container->share('response', Zend\Diactoros\Response::class);
