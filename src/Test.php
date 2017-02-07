@@ -1,8 +1,15 @@
 <?php
 
 class Test {
-    function __construct()
+    
+    /**
+     * @Inject
+     * @var TestTwo
+     */
+    protected $test;
+    
+    public function show()
     {
-        die('This is from the test class.');
+        var_dump($this->test);
     }
 }

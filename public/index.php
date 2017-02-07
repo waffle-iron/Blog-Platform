@@ -1,9 +1,9 @@
 <?php
 
-$config = require __DIR__ . '/../bootstrap.php';
-
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+
+$app = require __DIR__ . '/../bootstrap.php';
 
 $container = new League\Container\Container;
 
@@ -18,11 +18,7 @@ $container->share('emitter', Zend\Diactoros\Response\SapiEmitter::class);
 
 $route = new League\Route\RouteCollection($container);
 
-$route->map('GET', '/', function (ServerRequestInterface $request, ResponseInterface $response) {
-    $response->getBody()->write('<h1>Hello, World!</h1>');
-
-    return $response;
-});
+$route->map('GET', '/', 'Test::show');
 
 $response = $route->dispatch($container->get('request'), $container->get('response'));
 $container->get('emitter')->emit($response);

@@ -3,9 +3,8 @@
 use Config\App;
 
 class TestTwo {
-    
-    function __construct()
+    public function show()
     {
-        var_dump($app->getContainer()->get('Test'));
+        die('This');
     }
 }
