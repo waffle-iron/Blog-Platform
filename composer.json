@@ -6,6 +6,8 @@
         }
     },
     "require": {
-        "php-di/php-di": "^5.4"
+        "php-di/php-di": "^5.4",
+        "league/route": "^2.0",
+        "zendframework/zend-diactoros": "^1.3"
     }
 }
