@@ -1,5 +1,5 @@
 <?php
 
-require __DIR__ . '/../bootstrap.php';
+$config = require __DIR__ . '/../bootstrap.php';
 
-die('Index File');
+var_dump($config);
