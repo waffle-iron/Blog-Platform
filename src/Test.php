@@ -1,8 +1,8 @@
 <?php
 
 class Test {
-    function __construct()
+    public function show()
     {
-        die('This is from the test class.');
+        return 'This is the show method';
     }
 }
