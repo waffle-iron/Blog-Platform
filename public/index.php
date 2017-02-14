@@ -1,10 +1,7 @@
 <?php
 
-<<<<<<< HEAD
-=======
 require __DIR__ . '/../vendor/autoload.php';
 
->>>>>>> 31f756ab86e5327341a5964965f23a34f70c5a98
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
