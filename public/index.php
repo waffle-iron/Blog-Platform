@@ -1,5 +1,10 @@
 <?php
 
+<<<<<<< HEAD
+=======
+require __DIR__ . '/../vendor/autoload.php';
+
+>>>>>>> 31f756ab86e5327341a5964965f23a34f70c5a98
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -13,6 +18,10 @@ $container->share('request', function () {
         $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
     );
 });
+
+$container->delegate(
+    new League\Container\ReflectionContainer
+);
 
 $container->share('emitter', Zend\Diactoros\Response\SapiEmitter::class);
 
