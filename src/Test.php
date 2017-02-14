@@ -8,7 +8,7 @@ class Test  {
     {
         $this->two = $two;
     }
-    
+
     public function show()
     {
         var_dump($this->two);

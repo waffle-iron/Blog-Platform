@@ -2,9 +2,20 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use Config\App;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
-$app = new App;
-$app->setContainer(new \DI\ContainerBuilder);
+$container = new League\Container\Container;
 
-return $app->getContainer();
+$container->share('response', Zend\Diactoros\Response::class);
+$container->share('request', function(){
+	return Zend\Diactoros\ServerRequestFactory::fromGlobals(
+		$_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
+	);
+});
+
+$container->delegate(
+	new League\Container\ReflectionContainer
+);
+
+$container->share('emitter', Zend\Diactoros\Response\SapiEmitter::class);
