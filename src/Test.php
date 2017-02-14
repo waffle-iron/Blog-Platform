@@ -11,7 +11,6 @@ class Test  {
 
     public function show()
     {
-        var_dump($this->two);
-        return 'This is the show method';
+        return $this->two;
     }
 }
