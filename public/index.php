@@ -1,6 +1,6 @@
 <?php
 
-$config = require __DIR__ . '/../bootstrap.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -14,17 +14,15 @@ $container->share('request', function () {
     );
 });
 
+$container->delegate(
+    new League\Container\ReflectionContainer
+);
+
 $container->share('emitter', Zend\Diactoros\Response\SapiEmitter::class);
 
 $route = new League\Route\RouteCollection($container);
 
-$route->map('GET', '/', function (ServerRequestInterface $request, ResponseInterface $response) use ($config) {
-    $response->getBody()->write($config->get('Test')->show());
-
-    return $response;
-});
-
-$route->map('GET', '/other', 'Test::show');
+$route->map('GET', '/', 'Test::show');
 
 $response = $route->dispatch($container->get('request'), $container->get('response'));
 $container->get('emitter')->emit($response);
