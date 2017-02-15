@@ -4,9 +4,9 @@ use Config\App;
 
 class Test extends App  {
 
-    public function show()
+    public function show($request, $response, $args)
     {
-        $posts = $this->getEntityManager()->find('Post', 2);
+        $posts = $this->getEntityManager()->find('Post', $args['id']);
         var_dump($posts);
     }
 }
