@@ -1,16 +1,17 @@
 <?php
 
+use Config\App;
 
-class Test  {
+class Test extends App  {
     private $two;
 
-    function __construct(TestTwo $two)
+    function __construct()
     {
-        $this->two = $two;
+        
     }
 
     public function show()
     {
-        return $this->two;
+        var_dump($this->getEntityManager());
     }
 }
