@@ -3,15 +3,10 @@
 use Config\App;
 
 class Test extends App  {
-    private $two;
-
-    function __construct()
-    {
-        
-    }
 
     public function show()
     {
-        var_dump($this->getEntityManager());
+        $posts = $this->getEntityManager()->find('Post', 2);
+        var_dump($posts);
     }
 }
