@@ -18,4 +18,6 @@ $container->delegate(
 	new League\Container\ReflectionContainer
 );
 
+$container->add('TestInterface', 'TestRepository');
+
 $container->share('emitter', Zend\Diactoros\Response\SapiEmitter::class);
