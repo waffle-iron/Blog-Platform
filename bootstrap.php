@@ -4,20 +4,31 @@ require __DIR__ . '/vendor/autoload.php';
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use function DI\object;
+use function DI\get;
+use function DI\factory;
 
-$container = new League\Container\Container;
+$builder = new DI\ContainerBuilder;
 
-$container->share('response', Zend\Diactoros\Response::class);
-$container->share('request', function(){
-	return Zend\Diactoros\ServerRequestFactory::fromGlobals(
-		$_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
-	);
-});
+$builder->addDefinitions(
+    [
+        'response' => object(\Zend\Diactoros\Response::class), 
 
-$container->delegate(
-	new League\Container\ReflectionContainer
+        'request' => function () {
+            return Zend\Diactoros\ServerRequestFactory::fromGlobals(
+                $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
+            );
+        },
+
+        'emitter' => object(\Zend\Diactoros\Response\SapiEmitter::class),
+
+        \Doctrine\ORM\EntityManager::class => function() {
+            return (new \Config\App)->getEntityManager();
+        },
+
+        TestInterface::class => object(\TestRepository::class),
+    ]
 );
 
-$container->add('TestInterface', 'TestRepository');
+$container = $builder->build();
 
-$container->share('emitter', Zend\Diactoros\Response\SapiEmitter::class);
