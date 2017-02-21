@@ -14,6 +14,6 @@ class TestRepository implements TestInterface {
 
 	public function getById($id)
 	{
-		return 'The ID is: ' . $id;
+		return $this->entityManager->find('Post', $id);
 	}
 }

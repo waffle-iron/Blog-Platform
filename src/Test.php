@@ -10,7 +10,8 @@ class Test {
 
 	public function show($request, $response, $args)
 	{
-        return $response->getBody()
-            ->write($this->test->getById(1));
+        $posts = $this->test->getById(1);
+
+        return $response->getBody()->write($posts->getText());
 	}
 }
