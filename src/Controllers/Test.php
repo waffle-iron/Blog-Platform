@@ -1,5 +1,9 @@
 <?php
 
+namespace Controllers;
+
+use \EntityInterface\TestInterface;
+
 class Test {
 	protected $test;
 	

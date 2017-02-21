@@ -1,5 +1,7 @@
 <?php
 
+namespace Entity;
+
 /**
  @Entity
  @Table(name="posts")
