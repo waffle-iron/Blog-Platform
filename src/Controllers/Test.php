@@ -4,7 +4,8 @@ namespace App\Controllers;
 
 use \App\EntityInterface\TestInterface;
 
-class Test {
+class Test extends BaseController {
+
 	protected $test;
 	
 	function __construct(TestInterface $test)
@@ -14,8 +15,6 @@ class Test {
 
 	public function show($request, $response, $args)
 	{
-        $posts = $this->test->getById(1);
-
-        return $response->getBody()->write($posts->getText());
+        return $response->getBody()->write($this->getTemplateEngine()->render('index.html', array('name' => 'Ryan')));
 	}
 }
