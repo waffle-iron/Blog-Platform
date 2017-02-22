@@ -23,7 +23,7 @@ $builder->addDefinitions(
             return (new \Config\App)->getEntityManager();
         },
 
-        \EntityInterface\TestInterface::class => DI\object(\EntityRepository\TestRepository::class),
+        \App\EntityInterface\TestInterface::class => DI\object(\App\EntityRepository\TestRepository::class),
     ]
 );
 

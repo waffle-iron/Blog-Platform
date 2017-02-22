@@ -1,9 +1,9 @@
 <?php
 
+
 $routes = new League\Route\RouteCollection($container);
 
-$routes->get('/', 'Controllers\Test::show');
-$routes->get('/{id}', 'Test::show');
+$routes->get('/', 'App\Controllers\Test::show');
 
 $response = $routes->dispatch($container->get('request'), $container->get('response'));
 

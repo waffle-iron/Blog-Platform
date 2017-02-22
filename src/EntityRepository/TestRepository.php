@@ -1,9 +1,9 @@
 <?php
 
-namespace EntityRepository;
+namespace App\EntityRepository;
 
 use \Doctrine\ORM\EntityManager;
-use \EntityInterface\TestInterface;
+use \App\EntityInterface\TestInterface;
 
 class TestRepository implements TestInterface {
 
@@ -16,6 +16,6 @@ class TestRepository implements TestInterface {
 
 	public function getById($id)
 	{
-		return $this->entityManager->find('\Entity\Post', $id);
+		return $this->entityManager->find('\App\Entity\Post', $id);
 	}
 }
