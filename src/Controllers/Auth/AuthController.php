@@ -3,19 +3,29 @@
 namespace App\Controllers\Auth;
 
 use App\Controllers\BaseController;
+use App\EntityInterface\UserInterface;
+use App\Services\Input;
 
 class AuthController extends BaseController {
 
-	public function showLogin() {}
+	protected $user;
 
-	public function postLogin() {}
+	public function __construct(UserInterface $user)
+	{
+		$this->user = $user;
+	}
 
 	public function showRegister() 
 	{
 		return $this->getTemplateEngine()->render('auth/register.html');
 	}
 
-	public function postRegister() {}
+	public function postRegister($request, $response, $args) 
+	{
+		$input = Input::all();
 
-	public function logout() {}
+		$registered = $this->user->register($input);
+
+		return $this->getTemplateEngine()->render('auth/register.html', array('message' => $registered));
+	}
 }

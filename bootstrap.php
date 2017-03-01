@@ -22,6 +22,8 @@ $builder->addDefinitions(
         \Doctrine\ORM\EntityManager::class => function() {
             return (new \Config\App)->getEntityManager();
         },
+
+        \App\EntityInterface\UserInterface::class => DI\object(\App\EntityRepository\UserRepository::class),
     ]
 );
 
