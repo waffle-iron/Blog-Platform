@@ -15,6 +15,6 @@ class Test extends BaseController {
 
 	public function show($request, $response, $args)
 	{
-        return $response->getBody()->write($this->getTemplateEngine()->render('index.html', array('name' => 'Ryan')));
+        return $this->getTemplateEngine()->render('index.html', array('name' => 'Ryan'));
 	}
 }
