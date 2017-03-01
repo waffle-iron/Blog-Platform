@@ -3,7 +3,7 @@
 
 $routes = new League\Route\RouteCollection($container);
 
-$routes->get('/', 'App\Controllers\Test::show');
+$routes->get('/auth/register', 'App\Controllers\Auth\AuthController::showRegister');
 
 $response = $routes->dispatch($container->get('request'), $container->get('response'));
 

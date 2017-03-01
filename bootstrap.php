@@ -22,8 +22,6 @@ $builder->addDefinitions(
         \Doctrine\ORM\EntityManager::class => function() {
             return (new \Config\App)->getEntityManager();
         },
-
-        \App\EntityInterface\TestInterface::class => DI\object(\App\EntityRepository\TestRepository::class),
     ]
 );
 
