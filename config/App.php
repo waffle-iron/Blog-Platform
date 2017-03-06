@@ -17,7 +17,7 @@ class App {
 		  'host'   => DB::getHost(),
 		  'dbname' => DB::getDatabase(),
 		  'user'   => DB::getUsername(),
-		  'password' => DB::getPassword()
+		  'password' => DB::getPassword(),
 		);
 
 		return EntityManager::create($conn, $config);

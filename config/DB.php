@@ -7,9 +7,9 @@ class DB {
 	private static $connection = [
 		'driver'   => 'pdo_mysql',
 		'host'     => '127.0.0.1',
-		'dbname'   => 'doctrine',
+		'dbname'   => 'cms',
 		'user'     => 'root',
-		'password' => 'root'
+		'password' => ''
 	];
 
 	public static function getDriver()

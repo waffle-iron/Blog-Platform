@@ -2,9 +2,9 @@
 
 namespace App\EntityRepository;
 
+use \Doctrine\ORM\EntityManager;
 use App\EntityInterface\UserInterface;
 use App\Entity\User;
-use \Doctrine\ORM\EntityManager;
 
 class UserRepository implements UserInterface {
 
@@ -15,26 +15,15 @@ class UserRepository implements UserInterface {
 		$this->entityManager = $em;
 	}
 
-	public function register(array $user)
+	public function getUserById($id)
 	{
-		try {
-			$u = new User;
+		$query = $this->entityManager->createQueryBuilder();
 
-			$u->setEmail($user['email']);
-			$u->setPassword($user['password']);
-			$this->entityManager->persist($u);
-			$this->entityManager->flush();
+		return $query;
+	}
 
-			return [
-				'status'  => 'success',
-				'message' => 'Your account has been created successfully.'
-			];
-
-		} catch(\Exception $e) {
-			return [
-				'status'  => 'error',
-				'message' => 'Sorry, there was an error creating your account.'
-			];
-		}
+	public function add(User $userObject)
+	{
+		$this->entityManager->persist($userObject);
 	}
 }
