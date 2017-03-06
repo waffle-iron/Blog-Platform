@@ -5,6 +5,8 @@ require __DIR__ . '/vendor/autoload.php';
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
+session_start();
+
 $builder = new DI\ContainerBuilder;
 
 $builder->addDefinitions(
@@ -23,7 +25,9 @@ $builder->addDefinitions(
             return (new \Config\App)->getEntityManager();
         },
 
-        \App\EntityInterface\TestInterface::class => DI\object(\App\EntityRepository\TestRepository::class),
+        \App\EntityInterface\UserInterface::class => DI\object(\App\EntityRepository\UserRepository::class),
+
+        \App\FactoryInterface\UserFactoryInterface::class => DI\object(\App\Factory\UserFactory::class),
     ]
 );
 
