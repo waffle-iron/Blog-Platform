@@ -22,21 +22,8 @@ class AuthController extends BaseController {
 	public function postRegister($request, $response) 
 	{
 		$input = $request->getParsedBody();
-
 		$registered = $this->userManager->register($input);
 
-		$message = [
-			'status'  => 'success',
-			'message' => 'Your account was created successfully.'
-		];
-
-		if(!$registered) {
-			$message = [
-				'status'  => 'error',
-				'message' => 'Sorry, there was an error creating your account.'
-			];
-		}
-
-		return $this->getTemplateEngine()->render('auth/register.html', array('message' => $message));
+		return $this->getTemplateEngine()->render('auth/register.html', array('message' => $registered));
 	}
 }
