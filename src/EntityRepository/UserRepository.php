@@ -24,4 +24,19 @@ class UserRepository implements UserInterface {
 	{
 		$this->getEntityManager()->persist($userObject);
 	}
+
+	public function getPasswordByEmail($email)
+	{
+		$query = $this->getEntityManager()->createQueryBuilder();
+
+		$user = $query
+			->select('u.password')
+			->from('\App\Entity\User', 'u')
+			->where('u.email = :email')
+			->setParameter('email', $email)
+			->getQuery()
+			->getSingleResult();
+
+		return $user['password'];
+	}
 }
