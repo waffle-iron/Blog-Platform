@@ -2,28 +2,30 @@
 
 namespace App\EntityRepository;
 
-use \Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManager;
 use App\EntityInterface\UserInterface;
-use App\Entity\User;
 
 class UserRepository implements UserInterface {
 
 	protected $entityManager;
 
-	public function __construct(EntityManager $em)
+	public function __construct(EntityManager $entityManager)
 	{
-		$this->entityManager = $em;
+		$this->entityManager = $entityManager;
+	}
+
+	public function getEntityManager()
+	{
+		return $this->entityManager;
 	}
 
 	public function getUserById($id)
 	{
-		$query = $this->entityManager->createQueryBuilder();
-
-		return $query;
+		return 'test';
 	}
 
 	public function add(User $userObject)
 	{
-		$this->entityManager->persist($userObject);
+		$this->getEntityManager()->persist($userObject);
 	}
 }

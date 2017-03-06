@@ -24,12 +24,6 @@ class User {
 	 * @Column(type="string", length=255, nullable=false)
 	 **/
 	protected $password;
-
-	/**
-     * @ManyToMany(targetEntity="UserRole")
-     * @JoinTable(name="UserToRoles")
-     */
-    private $roles;
 		
 
 	public function getEmail()
@@ -50,10 +44,5 @@ class User {
 	public function setPassword($password)
 	{
 		$this->password = password_hash($password, PASSWORD_BCRYPT);
-	}
-
-	public function getRoles()
-	{
-		return $this->roles;
 	}
 }

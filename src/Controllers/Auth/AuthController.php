@@ -7,11 +7,11 @@ use App\Manager\UserManager;
 
 class AuthController extends BaseController {
 
-	protected $user;
+	protected $userManager;
 
-	public function __construct(UserManager $user)
+	public function __construct(UserManager $userManager)
 	{
-		$this->user = $user;
+		$this->userManager = $userManager;
 	}
 
 	public function showRegister() 
@@ -23,7 +23,20 @@ class AuthController extends BaseController {
 	{
 		$input = $request->getParsedBody();
 
-		$t = $this->user->register($input);
-		die(var_dump($t));
+		$registered = $this->userManager->register($input);
+
+		$message = [
+			'status'  => 'success',
+			'message' => 'Your account was created successfully.'
+		];
+
+		if(!$registered) {
+			$message = [
+				'status'  => 'error',
+				'message' => 'Sorry, there was an error creating your account.'
+			];
+		}
+
+		return $this->getTemplateEngine()->render('auth/register.html', array('message' => $message));
 	}
 }
