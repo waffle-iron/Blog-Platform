@@ -3,14 +3,13 @@
 namespace App\Controllers\Auth;
 
 use App\Controllers\BaseController;
-use App\EntityInterface\UserInterface;
-use App\Services\Input;
+use App\Manager\UserManager;
 
 class AuthController extends BaseController {
 
 	protected $user;
 
-	public function __construct(UserInterface $user)
+	public function __construct(UserManager $user)
 	{
 		$this->user = $user;
 	}
@@ -20,12 +19,11 @@ class AuthController extends BaseController {
 		return $this->getTemplateEngine()->render('auth/register.html');
 	}
 
-	public function postRegister($request, $response, $args) 
+	public function postRegister($request, $response) 
 	{
-		$input = Input::all();
+		$input = $request->getParsedBody();
 
-		$registered = $this->user->register($input);
-
-		return $this->getTemplateEngine()->render('auth/register.html', array('message' => $registered));
+		$t = $this->user->register($input);
+		die(var_dump($t));
 	}
 }
