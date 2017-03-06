@@ -29,7 +29,7 @@ class UserManager {
 			];
 		}
 
-		if(!Validator::minLength($user['password']), 7) {
+		if(!Validator::minLength($user['password'], 7)) {
 			return [
 				'status'  => 'error',
 				'message' => 'Password is too short.'

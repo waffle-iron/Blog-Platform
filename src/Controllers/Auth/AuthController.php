@@ -26,4 +26,18 @@ class AuthController extends BaseController {
 
 		return $this->getTemplateEngine()->render('auth/register.html', array('message' => $registered));
 	}
+
+	public function showLogin()
+	{
+		return $this->getTemplateEngine()->render('auth/register.html');
+	}
+
+	public function postLogin($request, $response)
+	{
+		$input  = $request->getParsedBody();
+		// $logged = $this->userManager->login($input);
+
+		echo '<pre>';
+		var_dump($request); 
+	}
 }
