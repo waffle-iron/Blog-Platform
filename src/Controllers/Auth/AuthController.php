@@ -41,12 +41,15 @@ class AuthController extends BaseController {
 		$logged = $this->userManager->login($input);
 		
 		if(!$logged) {
-			$error = [
-				'status'  => 'error',
-				'message' => 'Details are incorrect.'
-			];
+			
+			if(!is_array($logged)) {
+				$logged = [
+					'status'  => 'error',
+					'message' => 'Details are incorrect.'
+				];
+			}
 
-			return $this->getTemplateEngine()->render('auth/register.html', ['message' => $error]);
+			return $this->getTemplateEngine()->render('auth/register.html', ['message' => $logged]);
 		}
 
 		return Redirect::to($this->redirectPath);
