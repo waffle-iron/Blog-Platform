@@ -4,6 +4,7 @@ namespace App\EntityRepository;
 
 use Doctrine\ORM\EntityManager;
 use App\EntityInterface\UserInterface;
+use App\Entity\User;
 
 class UserRepository implements UserInterface {
 
@@ -17,11 +18,6 @@ class UserRepository implements UserInterface {
 	public function getEntityManager()
 	{
 		return $this->entityManager;
-	}
-
-	public function getUserById($id)
-	{
-		return 'test';
 	}
 
 	public function add(User $userObject)

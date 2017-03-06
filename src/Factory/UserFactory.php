@@ -20,19 +20,18 @@ class UserFactory implements UserFactoryInterface {
 		$this->user = $user;
 	}
 
-	/**
-	 * @ToDo:
-	 * - Validate user input.
-	 * - Check for errors
-	 **/
 	public function create(array $user)
 	{
-		$this->user->setEmail($user['email']);
-		$this->user->setPassword($user['password']);
+		try {
+			$this->user->setEmail($user['email']);
+			$this->user->setPassword($user['password']);
 
-		$this->userInterface->add($this->user);
-		
-		$this->userInterface->getEntityManager()->flush();
+			$this->userInterface->add($this->user);
+			$this->userInterface->getEntityManager()->flush();
+		} catch(\Exception $e) {
+			//Log error
+			return false;
+		}
 
 		return true;
 	}
