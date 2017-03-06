@@ -8,4 +8,9 @@ class Session {
 	{
 		$_SESSION['user'] = $user;
 	}
+
+	public static function user()
+	{
+		return $_SESSION['user'];
+	}
 }

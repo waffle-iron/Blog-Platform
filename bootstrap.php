@@ -5,6 +5,8 @@ require __DIR__ . '/vendor/autoload.php';
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
+session_start();
+
 $builder = new DI\ContainerBuilder;
 
 $builder->addDefinitions(
