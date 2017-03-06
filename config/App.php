@@ -8,6 +8,8 @@ use \Config\DB;
 
 class App {
 
+	private $debug = false;
+
 	public function getEntityManager()
 	{
 		$config  = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/../src"), true);
@@ -21,5 +23,10 @@ class App {
 		);
 
 		return EntityManager::create($conn, $config);
+	}
+
+	public function getDebug()
+	{
+		return $this->debug;
 	}
 }
