@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/RyanHipkiss/Blog-Platform.png?label=ready&title=Ready)](https://waffle.io/RyanHipkiss/Blog-Platform)
 # Blog-Platform
 Blog CMS using Doctrine ORM (for learning purposes)
 
